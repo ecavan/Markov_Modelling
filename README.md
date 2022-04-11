@@ -29,7 +29,11 @@ For our clustering algorithm we also diverge from Schulte's paper. Whereas Schul
 
 # KMeans
 
-For our
+The algorithm for KMeans clustering can be outlined as:
+1. initialize 
+2. blah
+
+For us
 
 # Markov Model
 
