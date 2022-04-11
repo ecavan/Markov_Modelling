@@ -24,7 +24,7 @@ An example "drive"
 
 ```mermaid
 graph LR
-A[1st and 10] -- incomplete pass --> B((2nd and long)) --> C(3rd and mid) --> D(4th and short) -- punt --> A[Change of Possession]
+A[1st and 10] -- incomplete pass --> B((2nd and long)) --> C(3rd and mid) --> D(4th and short) -- punt --> E[Change of Possession]
 ```
 
 # Math
