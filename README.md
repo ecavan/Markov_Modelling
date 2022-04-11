@@ -50,6 +50,10 @@ For our implementation we took a slight divergence from this algorithm but makin
 5. Take the total clustering metric to be max(ESS) - min(ESS) for the k clusters
 6. Iterate until optimal total clustering metric is reached
 
+This algorithm is an improvement on the classical KMeans algorithm because....
+
+![fig3](img/clust_error.png)
+
 # Markov Model
 
 
