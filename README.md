@@ -43,10 +43,10 @@ For our implementation we took a slight divergence from this algorithm.
 
 This math is inline `a^2+b^2=c^2`.
 
-This is on a separate line
+A Markov model
 
 ```math
-a^2+b^2=c^2
+E[X_{i+1} | X_i X_{i-1} ... X_1] = E[X_{i+1} | X_i ]
 ```
 
 
