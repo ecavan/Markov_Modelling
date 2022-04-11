@@ -21,7 +21,13 @@ a^2+b^2=c^2
 
 > **Note:** The **Publish now** button is disabled if your file has not been published yet.
 
+# More tricks
 
+|                |ASCII                          |HTML                         |
+|----------------|-------------------------------|-----------------------------|
+|Single backticks|`'Isn't this fun?'`            |'Isn't this fun?'            |
+|Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
+|Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
 
 
 
