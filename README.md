@@ -24,10 +24,7 @@ An example "drive"
 
 ```mermaid
 graph LR
-A[1st and 10] -- Link text --> B((2nd and long))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
+A[1st and 10] -- incomplete pass --> B((2nd and long)) --> C(3rd and mid) --> D(4th and short) -- punt --> A[Change of Possession]
 ```
 
 # Math
