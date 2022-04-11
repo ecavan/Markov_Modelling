@@ -56,17 +56,11 @@ We took the error to we the max(ESS) - min(ESS) for the k clusters in order to t
 
 # Markov Model
 
-
-This math is inline `a^2+b^2=c^2`.
-
-A Markov model
+A Markov model is a model in which
 
 ```math
 E[Xi+1 | X_i X_i-1 ... X_1] = E[X_i+1 | X_i ]
 ```
-
-
-# Hidden Markov Models
 
 # Results
 
