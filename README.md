@@ -2,10 +2,11 @@
 
 By: Ryker Moreau & Elijah Cavan
 
-
 853 Final Project
 
 ___________________________________________________________________________________________________________________________________________________________
+> **Note:** The **Publish now** button is disabled if your file has not been published yet.
+
 
 # Introduction
 
@@ -43,11 +44,6 @@ a^2+b^2=c^2
 
 
 # Hidden Markov Models
-
-
-# Also
-
-> **Note:** The **Publish now** button is disabled if your file has not been published yet.
 
 # Results
 
