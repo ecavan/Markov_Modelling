@@ -24,7 +24,7 @@ graph LR
 A[1st and mid] -- QB sack --> B(2nd and long) -- incomplete pass --> C(3rd and long) -- run play --> D(4th and mid) -- punt --> E[Change of Possession]
 ```
 
-Ne
+For our clustering algorithm we also diverge from Schulte's paper.
 
 
 # KMeans
