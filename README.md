@@ -46,7 +46,7 @@ This math is inline `a^2+b^2=c^2`.
 A Markov model
 
 ```math
-E[X_{i+1} | X_i X_{i-1} ... X_1] = E[X_{i+1} | X_i ]
+E[Xi+1 | X_i X_i-1 ... X_1] = E[X_i+1 | X_i ]
 ```
 
 
