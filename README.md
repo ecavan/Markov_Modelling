@@ -4,6 +4,14 @@
 > 
 > **By:** Ryker Moreau & Elijah Cavan
 
+
+
+# Table of Contents
+1. [Introduction](#Introduction)
+2. [KMeans](#KMeans)
+3. [Markov Model](#Markov Model)
+4. [Results](#Results)
+
 ___________________________________________________________________________________________________________________________________________________________
 
 # Introduction
