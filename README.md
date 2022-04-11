@@ -30,10 +30,13 @@ For our clustering algorithm we also diverge from Schulte's paper. Whereas Schul
 # KMeans
 
 The algorithm for KMeans clustering can be outlined as:
-1. initialize 
-2. blah
+1. Prespecify the number of clusters, k
+2. Initialize k centroids (cluster means)
+3. Calculate the ESS (estimated sum of squares) for each cluster
+4. Displace the centroids by recalculating the cluster averge
+5. Iterate until optimal ESS is reached (average ESS from each cluster)
 
-For us
+For our implementation we took a slight divergence from this algorithm.
 
 # Markov Model
 
