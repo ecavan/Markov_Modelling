@@ -1,5 +1,13 @@
 # Evaluating NFL WRs using KMeans & Markov Modelling
 
+By: Ryker Moreau & Elijah Cavan
+853 Final Project
+
+___________________________________________________________________________________________________________________________________________________________
+
+
+
+# Introduction
 
 
 
