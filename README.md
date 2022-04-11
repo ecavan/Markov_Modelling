@@ -24,7 +24,7 @@ An example "drive"
 
 ```mermaid
 graph LR
-A[1st and 10] -- incomplete pass --> B(2nd and long) -- complete pass --> C(3rd and mid) -- run play --> D(4th and short) -- punt --> E[Change of Possession]
+A[1st and mid] -- QB sack --> B(2nd and long) -- incomplete pass --> C(3rd and long) -- run play --> D(4th and mid) -- punt --> E[Change of Possession]
 ```
 
 # Math
