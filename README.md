@@ -33,14 +33,15 @@ We clustered our players using the [tracking data](https://www.kaggle.com/c/nfl-
 
 ![fig2](img/bins.png)
 
-The algorithm for KMeans clustering can be outlined as:
+Using each of these bins we calculate the success probability for the receiver in each zone (if there is no event in a given bin we assign it a success probability of zero); that is to say the success probability is the number of catches a WR (or TE or RB) has in a specific area of the field divided by the number of times a QB has thrown him the ball in that region of the field. The success probability for each region of the field were the covariates we used in our clustering algorithm to seggregate players. As outlined in the introduction, we used a KMeans algorithm to preform the clustering. The classical algorithm for KMeans clustering can be outlined as:
+
 1. Prespecify the number of clusters, k
 2. Initialize k centroids (cluster means)
 3. Calculate the ESS (estimated sum of squares) for each cluster
 4. Displace the centroids by recalculating the cluster averge
 5. Iterate until optimal ESS is reached (average ESS from each cluster)
 
-For our implementation we took a slight divergence from this algorithm but making use of Monte Carlo simulations. Our new algorithm can be outlined as such:
+For our implementation we took a slight divergence from this algorithm but making use of Monte Carlo simulations. This was because we wanted to use a large number of features in our algorithm (9-10) at the same time- and so our problem was very high dimensional. Our new algorithm can be outlined as such:
 
 1. Make a draw, k, from Uniform(a,b) (a=3, b=8)
 2. Initialize k clusters 
