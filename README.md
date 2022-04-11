@@ -48,9 +48,11 @@ For our implementation we took a slight divergence from this algorithm but makin
 5. Take the total clustering metric to be max(ESS) - min(ESS) for the k clusters
 6. Iterate until optimal total clustering metric is reached
 
-This algorithm is an improvement on the classical KMeans algorithm because....
+This algorithm is an improvement on the classical KMeans algorithm because we can determine the optimal number of clusters, k, that we should specify to get the best result- which mirrors the advantage in Schulte's paper by using the affinity algorithm. The plot below shows the error over 50,000 draws of k.
 
 ![fig3](img/clust_error.png)
+
+We took the error to we the max(ESS) - min(ESS) for the k clusters in order to try to get results in which the ESS was similar for each cluster. i.e we didn't want the case where one cluster has a very small ESS (i.e the players fit well in that cluster) which decrease the average ESS accross the clusters and give us a false sense that each cluster is doing a good job grouping the players. The fact that the optimal number of clusters is 4 is quite encouraging- the number of 'receivers' (players who are able to catch the ball) varies throughout a football game, but the most common formations include 2 WRs, 1 TE and 1 RB. Now that we cluster players based on where they catch the ball, we can compare the players within the clusters using the markov model we developped. 
 
 # Markov Model
 
