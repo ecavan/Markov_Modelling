@@ -20,30 +20,11 @@ In 2020, the NFL hosted a data science competition called the NFL Big Data Bowl.
 His paper is titled, "Apples-to-Apples..." because he wanted to find ways to compare players who do similar actions on the ice (i.e he felt it was wrong to compare defensemen- who's primary task is to defend the net anf make outlet passes to forwards, with forwards- who's job is to keep possession of the puck and create scoring oppertunities in the attacking zone). He used the affinity propagation clustering algorithm with the available event data to create heatmaps which described where a player performs specific actions on the ice the most. After doing this, he created a metric to evaluate the players in each of the clusters using a Markov Model. 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Markov_Modelling
+An example "drive"
 
 ```mermaid
 graph LR
-A[Square Rect] -- Link text --> B((Circle))
+A[1st and 10] -- Link text --> B((2nd and long))
 A --> C(Round Rect)
 B --> D{Rhombus}
 C --> D
