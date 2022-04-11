@@ -17,7 +17,9 @@ This is on a separate line
 ```math
 a^2+b^2=c^2
 ```
+# Also
 
+> **Note:** The **Publish now** button is disabled if your file has not been published yet.
 
 
 
