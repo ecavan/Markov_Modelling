@@ -49,7 +49,7 @@ Using each of these bins we calculate the success probability for the receiver i
 
 We compare this plot with the heatmap for a typical player in Hill's cluster:
 
-![fig2](img/hill2png)
+![fig4](img/hill2.png)
 
 This is confirmation that our clustering algorithm worked well. As outlined in the introduction, we used a K-Means algorithm to preform the clustering. The classical algorithm for KMeans clustering can be outlined as:
 
