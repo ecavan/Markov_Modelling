@@ -14,6 +14,9 @@ ________________________________________________________________________________
 2. [KMeans](#KMeans)
 3. [Markov Model](#Markov-Model)
 4. [Results](#Results)
+5. [Conclusion](#Conclusion)
+6. [References](#References)
+
 
 # Introduction
 
@@ -94,7 +97,9 @@ Cluster 1:
 |Dude2  |2.2|2.2|
 
 
+# Conclusion
 
+# References
 
 
 
