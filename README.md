@@ -65,11 +65,15 @@ We took the error to we the max(ESS) - min(ESS) for the k clusters in order to t
 
 # Markov Model
 
-A Markov model is a model in which
+A Markov model is a model in which:
 
 ```math
-E[Xi+1 | X_i X_i-1 ... X_1] = E[X_i+1 | X_i ]
+P(Xi+1 | X_i X_i-1 ... X_1) = P(X_i+1 | X_i )
 ```
+That is to say we are modelling a stochastic, time varying process by only sampling using information from the prior step in our random walk. For our example, the states we consider are the possible game states an offense experiences during a drive. These states depend on the down, distance to the first down marker and the current field position. There are 4 possible downs. The distance to the first down marker is binned as short (.1-5 yards), medium (6-10 yards) and long (10+ yards). The field position state is also binned as 0-20, 20-40, 40-60 and Redzone, representing the offense having the ball on their own 0-20 yardline, their own 20-40 yardline, ect. Hence possible sates might be 1st and mid 0-20 or 3rd and long 40-60, ect. The transition probabilities 'P(x'|x)' (where x' is the next state and x is the current state) tell us how likely it is for us to change between states and can be used to measure the impact of individual players. We calculate the transition probabilities using the same method as in the paper by Schulte, 
+
+
+
 
 # Results
 
