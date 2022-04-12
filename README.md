@@ -40,7 +40,11 @@ We clustered our players using the [tracking data](https://www.kaggle.com/c/nfl-
 
 ![fig2](img/bins.png)
 
-Using each of these bins we calculate the success probability for the receiver in each zone (if there is no event in a given bin we assign it a success probability of zero); that is to say the success probability is the number of catches a WR (or TE or RB) has in a specific area of the field divided by the number of times a QB has thrown him the ball in that region of the field. The success probability for each region of the field were the covariates we used in our clustering algorithm to seggregate players. As outlined in the introduction, we used a KMeans algorithm to preform the clustering. The classical algorithm for KMeans clustering can be outlined as:
+Using each of these bins we calculate the success probability for the receiver in each zone (if there is no event in a given bin we assign it a success probability of zero); that is to say the success probability is the number of catches a WR (or TE or RB) has in a specific area of the field divided by the number of times a QB has thrown him the ball in that region of the field. The success probability for each region of the field were the covariates we used in our clustering algorithm to seggregate players. Below is an example of the binned success probabilities for KC Chiefs WR Tyreek Hill (A.K.A Cheetah).
+
+![fig2](img/hill1.png)
+
+As outlined in the introduction, we used a KMeans algorithm to preform the clustering. The classical algorithm for KMeans clustering can be outlined as:
 
 1. Prespecify the number of clusters, k
 2. Initialize k centroids (cluster means)
