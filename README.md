@@ -1,4 +1,4 @@
-> # Evaluating NFL WRs using KMeans & Markov Modelling
+> # Modelling Player Impact in the National Football League
 > 
 > **STAT 853 Final Project** 
 > 
