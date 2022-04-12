@@ -47,7 +47,11 @@ Using each of these bins we calculate the success probability for the receiver i
 
 ![fig2](img/hill1.png)
 
-As outlined in the introduction, we used a KMeans algorithm to preform the clustering. The classical algorithm for KMeans clustering can be outlined as:
+We compare this plot with the heatmap for a typical player in Hill's cluster:
+
+![fig2](img/hill2png)
+
+This is confirmation that our clustering algorithm worked well. As outlined in the introduction, we used a K-Means algorithm to preform the clustering. The classical algorithm for KMeans clustering can be outlined as:
 
 1. Prespecify the number of clusters, k
 2. Initialize k centroids (cluster means)
