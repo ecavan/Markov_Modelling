@@ -132,15 +132,19 @@ Using each of these bins we calculate the number of times a receiver is targeted
   5. Re-initialize the algorithm with the new value of k
   6. After the algorithm has converged, recalculate a player’s affinity to each cluster and re-assign as needed
 
-This algorithm takes several divergences from the classical k-means algorithm. For one, we sample randomly from the unform distribution to select different values for k, amd then we determine the value which leads to the optimal BCSS (between cluster sum of squares). This is because while a player's affinity to a given cluster (his distance from the cluster centroid) can vary, the overall BCSS doesn't change as drastically even for different values of k. 
+This algorithm takes several divergences from the classical k-means algorithm. For one, we sample randomly from the unform distribution to select different values for k, amd then we determine the value which leads to the optimal BCSS (between cluster sum of squares). This is because while a player's affinity to a given cluster (his distance from the cluster centroid) can vary, the overall BCSS doesn't change as drastically even for different values of k (this is shown in the figure below, along with a plot of how we determined the optimal value of k). 
 
+BCSS v.s WCSS            |  Optimal value of k
+:-------------------------:|:-------------------------:
+![](img/err1.png)  |  ![](img/err2.png)
 
+We also randomly assign the points to a cluster, rather than randomly initializing the centroids- this is not a big change. The other big change is after we re-initialize our algorithm with the optimal value of k, we then go back and calculate a point's affinity to each cluster. This is best explained in the figure below.
 
-This algorithm is an improvement on the classical KMeans algorithm because we can determine the optimal number of clusters, k, that we should specify to get the best result- which mirrors the advantage in Schulte's paper by using the affinity algorithm. The plot below shows the error over 50,000 draws of k.
+Adam Thielan's Affinity to Each Cluster      
+:-------------------------:
+![](img/err3.png)  
 
-![fig3](img/clust_error.png)
-
-We took the error to we the max(ESS) - min(ESS) for the k clusters in order to try to get results in which the ESS was similar for each cluster. i.e we didn't want the case where one cluster has a very small ESS (i.e the players fit well in that cluster) which decrease the average ESS accross the clusters and give us a false sense that each cluster is doing a good job grouping the players. The fact that the optimal number of clusters is 4 is quite encouraging- the number of 'receivers' (players who are able to catch the ball) varies throughout a football game, but the most common formations include 2 WRs, 1 TE and 1 RB. Now that we cluster players based on where they catch the ball, we can compare the players within the clusters using the markov model we developped. 
+What we noticed was that this WR was assigned to cluster 5 (where we has the 2nd highest affinity) instead of cluster 8. Hence, by re-assigning the points after the algorithm has converged, we are essentially allowing for un-equal cluster sizes, which is another way in which our algorithm has taken a step further from k-means. Now that we cluster players based on where they catch the ball, we can compare the players within the clusters using the markov model we developped, the results are shown in the next section.
 
 
 # Results
