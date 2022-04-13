@@ -187,11 +187,20 @@ In our future work, we plan to continue to work with Markov Models. In particula
 
 [2] Schulte, O., Zhao, Z., & Javan, M. (2017). Apples-to-Apples : Clustering and Ranking NHL Players Using Location Information and Scoring Impact.
 
-[3] https://github.com/gregalytics/2021-Big-Data-Cup, accessed April 5, 2022.
+[3] Greg Akerman, Evaluating the 2019-20 Erie Otters Through Absorbing Markov Chains , (2021), GitHub repository, https://github.com/gregalytics/2021-Big-Data-Cup, accessed April 5, 2022.
 
-[4] https://statsbomb.com/articles/soccer/attacking-contributions-markov-models-for-football/ , accessed April 7, 2022.
+[4] Yam, Derrick. “Attacking Contributions: Markov Models for Football.” StatsBomb, 1 Apr. 2020, statsbomb.com/2019/02/attacking-contributions-markov-models-for-football/.
 
 [5] https://stats.stackexchange.com/questions/133656/how-to-understand-the-drawbacks-of-k-means/133694#133694, accessed April 9, 2022.
+
+[6] https://global.oup.com/us/companion.websites/9780199397129/student/chapt5/overview/, accessed April 9, 2022.
+
+[7] Carter, Virgil, and Robert E. Machol. “Operations Research on Football. ”Operations Research. Vol. 19, No. 2 (Mar. – Apr., 1971), pp. 541-544
+
+[8] Rudd, Sarah. “A Framework for Tactical Analysis and Individual Offensive Production Assessment in Soccer
+Using Markov Chains.” nessis.org, www.onfooty.com, 2011, nessis.org/nessis11/rudd.pdf.
+
+[9] Carroll, Bob, Pete Palmer, and John Thorn. The Hidden Game of Football. NewYork: Warner Books, 1988.
 
 
 
