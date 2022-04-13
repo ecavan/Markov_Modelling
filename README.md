@@ -11,12 +11,13 @@ ________________________________________________________________________________
 
 # Table of Contents
 1. [Introduction](#Introduction)
-2. [KMeans](#KMeans)
-3. [KMeans Application](#KMeans-Application)
-4. [Markov Model](#Markov-Model)
-5. [Results](#Results)
-6. [Future Work](#Future-Work)
-7. [References](#References)
+2. [K-Means](#K-Means)
+3. [Markov Chains](#Markov-Chains)
+5. [Markov Model Application](#Markov-Model-Application)
+6. [KMeans Application](#KMeans-Application)
+7. [Results](#Results)
+8. [Future Work](#Future-Work)
+9. [References](#References)
 
 link to [slides](https://docs.google.com/presentation/d/1bvzMfxo3721_JdMw8n61vsivoslSwqzKrg_LqV7nLtM/edit?usp=sharing) 
 
@@ -39,7 +40,7 @@ A[1st and mid] -- QB sack --> B(2nd and long) -- incomplete pass --> C(3rd and l
 
 For our clustering algorithm we also diverge from Schulte's paper. Whereas Schulte's affinity propagation algorithm doesn't assume an initial cluster number- our KMeans algorithm does need to have a number of clusters specificied a priori. We dealt with this by running the algorithm thousands of times using different pre-specified cluster numbers and picking the iteration where the algorithm has the smallest error.
 
-# KMeans
+# K-Means
 
 The classical K-Means algorithm can be ennumerated as:
 
@@ -59,11 +60,29 @@ K-means            |  Hierarchial Clustering
 ![](img/kmeans.png)  |  ![](img/hclust.png)
 
 
-K-means also is meant to create clusters of equal sizes- and doesn't really allow us to make unequal cluster sizes. It also has the disadvantage 
+K-means also is meant to create clusters of equal sizes- and doesn't really allow us to make unequal cluster sizes. It also has the disadvantage of requiring us to specify k (the number of clusters) before we begin the algorithm. This means we usually have to run the algorithm multiple times for different values of k to get the best clustering results. 
+
+To evaluate your clustering results, we usually look at two different metrics: the WCSS- within-cluster sum of squares and the BCSS- between cluster sum of squares (i.e we look at how well on average to points belong to their cluster, and how well separated are the clusters). The law of variation tells us the is a tradeoff between these two metrics (similar to the bias-variance tradeoff in regression analysis) because there is only so much variation in the data that can be explained by adding more clusters.
+
+In our section on "K-Means application", we discuss the changes we made to the classical algorithm to try to make up for some of it's shortcomings. 
+
+# Markov Chains
 
 
+# Markov Model Application
 
+A Markov model is a stochastic model for randomly changing systems, with probability associated with a sequence of events occurring based on a previous state
 
+```math
+P(Xi+1 | X_i X_i-1 ... X_1) = P(X_i+1 | X_i )
+```
+That is to say we are modelling a stochastic, time varying process by only sampling using information from the prior step in our random walk. For our example, the states we consider are the possible game states an offense experiences during a drive. These states depend on the down, distance to the first down marker and the current field position. There are 4 possible downs. The distance to the first down marker is binned as short (.1-5 yards), medium (6-10 yards) and long (10+ yards). The field position state is also binned as 0-20, 20-40, 40-60 and Redzone, representing the offense having the ball on their own 0-20 yardline, their own 20-40 yardline, ect. Hence possible sates might be 1st and mid 0-20 or 3rd and long 40-60, ect. These states are ended by absorning states (field goal, touch down or change of possession).
+
+The transition probabilities `P(x'|x)` (where x' is the next state and x is the current state) tell us how likely it is for us to change between states (including absorbing states) and can be used to measure the impact of individual players. We calculate the transition probabilities using the same method as in the paper by Schulte, 
+```math2
+P(x'|x) = n(x',x)/n(x)
+```
+That is to say, the transition probabilities are approximated as observance counts (`n(x',x)` - how many times we see a particular change in state) divided by the marginal occurance counts (`n(x)` - how many times a particular state has occured). This gives us our maximum likelihood estimates for our markov model. Using the model, we can determine the transition probabilities that are contributed by all of the players we looked at- and estimate their impact by the amount of 'points' they contributed on each play (i.e the amount of value they added increasing the probability an offense will score points, and have a lower probability of 'changing possesions' with the opposing team). The results are summarized in the next chapter.
 
 
 # KMeans Application
@@ -102,21 +121,6 @@ This algorithm is an improvement on the classical KMeans algorithm because we ca
 ![fig3](img/clust_error.png)
 
 We took the error to we the max(ESS) - min(ESS) for the k clusters in order to try to get results in which the ESS was similar for each cluster. i.e we didn't want the case where one cluster has a very small ESS (i.e the players fit well in that cluster) which decrease the average ESS accross the clusters and give us a false sense that each cluster is doing a good job grouping the players. The fact that the optimal number of clusters is 4 is quite encouraging- the number of 'receivers' (players who are able to catch the ball) varies throughout a football game, but the most common formations include 2 WRs, 1 TE and 1 RB. Now that we cluster players based on where they catch the ball, we can compare the players within the clusters using the markov model we developped. 
-
-# Markov Model
-
-A Markov model is a stochastic model for randomly changing systems, with probability associated with a sequence of events occurring based on a previous state
-
-```math
-P(Xi+1 | X_i X_i-1 ... X_1) = P(X_i+1 | X_i )
-```
-That is to say we are modelling a stochastic, time varying process by only sampling using information from the prior step in our random walk. For our example, the states we consider are the possible game states an offense experiences during a drive. These states depend on the down, distance to the first down marker and the current field position. There are 4 possible downs. The distance to the first down marker is binned as short (.1-5 yards), medium (6-10 yards) and long (10+ yards). The field position state is also binned as 0-20, 20-40, 40-60 and Redzone, representing the offense having the ball on their own 0-20 yardline, their own 20-40 yardline, ect. Hence possible sates might be 1st and mid 0-20 or 3rd and long 40-60, ect. These states are ended by absorning states (field goal, touch down or change of possession).
-
-The transition probabilities `P(x'|x)` (where x' is the next state and x is the current state) tell us how likely it is for us to change between states (including absorbing states) and can be used to measure the impact of individual players. We calculate the transition probabilities using the same method as in the paper by Schulte, 
-```math2
-P(x'|x) = n(x',x)/n(x)
-```
-That is to say, the transition probabilities are approximated as observance counts (`n(x',x)` - how many times we see a particular change in state) divided by the marginal occurance counts (`n(x)` - how many times a particular state has occured). This gives us our maximum likelihood estimates for our markov model. Using the model, we can determine the transition probabilities that are contributed by all of the players we looked at- and estimate their impact by the amount of 'points' they contributed on each play (i.e the amount of value they added increasing the probability an offense will score points, and have a lower probability of 'changing possesions' with the opposing team). The results are summarized in the next chapter.
 
 
 # Results
