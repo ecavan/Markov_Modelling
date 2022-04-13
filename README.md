@@ -22,8 +22,9 @@ link to [Markov Model](853_final_prjoect_mc.R)
 5. [Markov Model Application](#Markov-Model-Application)
 6. [Adapted K-Means Application](#Adapted-K-Means-Application)
 7. [Results](#Results)
-8. [Future Work](#Future-Work)
-9. [References](#References)
+8. [Conclusion](#Conclusion)
+9. [Future Work](#Future-Work)
+10. [References](#References)
 
 # Introduction
 
@@ -171,6 +172,8 @@ Tyreek Hill's Cluster        |  Alvin Kamara's Cluster
 ![](img/hill3.png)  |  ![](img/kamara3.png)
 
 As you can see, Kamara offers little value to the passing game as a running back compared to other receivers in his cluster. Hill is one of the top members of his cluster.
+
+# Conclusion
 
 # Future Work
 
