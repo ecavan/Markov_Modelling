@@ -14,7 +14,7 @@ ________________________________________________________________________________
 2. [K-Means](#K-Means)
 3. [Markov Chains](#Markov-Chains)
 5. [Markov Model Application](#Markov-Model-Application)
-6. [KMeans Application](#KMeans-Application)
+6. [Adapted K-Means Application](#Adapted-K-Means-Application)
 7. [Results](#Results)
 8. [Future Work](#Future-Work)
 9. [References](#References)
@@ -113,9 +113,9 @@ We use this matrix to calculate:
 
 I.e, using the model, we can determine the transition probabilities that are contributed by all of the players we looked at- and estimate their impact by the amount of 'points' they contributed on each play (i.e the amount of value they added increasing the probability an offense will score points, and have a lower probability of 'changing possesions' with the opposing team). However, following the paper by Schulte we didn't want to compare players who operate in very different areas of the field- hence in the next section we will talk about how we clustered the players in order to do "apples-to-apples" comparisons of these players. 
 
-# KMeans Application
+# Adapted K-Means Application
 
-We clustered our players using the [tracking data](https://www.kaggle.com/c/nfl-big-data-bowl-2021) from the 2021 NFL Big Data Bowl competition. This is a significant divergence from Schulte's paper, who had only event data (where a shot, pass or turnover is made for example). Our tracking data gives us information about the positions of each player on the field. Using this data, we separate each passing play event (each WR 'target' or attempted pass) into bins which are shown below:
+We clustered our players using the [tracking data](https://www.kaggle.com/c/nfl-big-data-bowl-2021) from the 2021 NFL Big Data Bowl competition. This is a significant divergence from Schulte's paper, who had only event data (where a shot, pass or turnover is made for example). Our tracking data gives us information about the positions of each player on the field. Using this data, we separate each passing play event (each WR 'target' or attempted pass) into bins by scaling all the plays to begin at the same starting position (LOS- same line of scrimmage). A plot of all the completions for the 2018 season is shown below:
 
 
 Passing Target Bins        
@@ -123,30 +123,18 @@ Passing Target Bins
 ![](img/bins.png)  
 
 
-Using each of these bins we calculate the success probability for the receiver in each zone (if there is no event in a given bin we assign it a success probability of zero); that is to say the success probability is the number of catches a WR (or TE or RB) has in a specific area of the field divided by the number of times a QB has thrown him the ball in that region of the field. The success probability for each region of the field were the covariates we used in our clustering algorithm to seggregate players. Below is an example of the binned success probabilities for KC Chiefs WR Tyreek Hill (A.K.A Cheetah).
+Using each of these bins we calculate the number of times a receiver is targeted in each zone in each zone (if there is no event in a given bin we assign zero). These 10 areas of the field (and the number of taregts) a receiver has seen in each zone become the features for our K-Means clustering algorithm. The adapted K-Means algorithm can be summarized as follows:
 
-![fig2](img/hill1.png)
+  1. Draw values of k randomly from Uniform(a,b)
+  2. Randomly assign points to clusters
+  3. Calculate the centroids, get the BCSS
+  4. Determine the optimal value of k from repeated sampling
+  5. Re-initialize the algorithm with the new value of k
+  6. After the algorithm has converged, recalculate a player’s affinity to each cluster and re-assign as needed
 
-We compare this plot with the heatmap for a typical player in Hill's cluster:
+This algorithm takes several divergences from the classical k-means algorithm. For one, we sample randomly from the unform distribution to select different values for k, amd then we determine the value which leads to the optimal BCSS (between cluster sum of squares). This is because while a player's affinity to a given cluster (his distance from the cluster centroid) can vary, the overall BCSS doesn't change as drastically even for different values of k. 
 
-![fig4](img/hill2.png)
 
-This is confirmation that our clustering algorithm worked well. As outlined in the introduction, we used a K-Means algorithm to preform the clustering. The classical algorithm for KMeans clustering can be outlined as:
-
-1. Prespecify the number of clusters, k
-2. Initialize k centroids (cluster means)
-3. Calculate the ESS (estimated sum of squares) for each cluster
-4. Displace the centroids by recalculating the cluster averge
-5. Iterate until optimal ESS is reached (average ESS from each cluster)
-
-For our implementation we took a slight divergence from this algorithm but making use of Monte Carlo simulations. This was because we wanted to use a large number of features in our algorithm (9-10) at the same time- and so our problem was very high dimensional. Our new algorithm can be outlined as such:
-
-1. Make a draw, k, from Uniform(a,b) (a=3, b=8)
-2. Initialize k clusters 
-3. Calculate the k centroids (cluster means)
-4. Determine the cluster ESS 
-5. Take the total clustering metric to be max(ESS) - min(ESS) for the k clusters
-6. Iterate until optimal total clustering metric is reached
 
 This algorithm is an improvement on the classical KMeans algorithm because we can determine the optimal number of clusters, k, that we should specify to get the best result- which mirrors the advantage in Schulte's paper by using the affinity algorithm. The plot below shows the error over 50,000 draws of k.
 
@@ -156,6 +144,16 @@ We took the error to we the max(ESS) - min(ESS) for the k clusters in order to t
 
 
 # Results
+
+Here we 
+
+
+
+![fig2](img/hill1.png)
+
+We compare this plot with the heatmap for a typical player in Hill's cluster:
+
+![fig4](img/hill2.png)
 
 Cluster 1:
 
