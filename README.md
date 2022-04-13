@@ -76,7 +76,7 @@ We took the error to we the max(ESS) - min(ESS) for the k clusters in order to t
 
 # Markov Model
 
-A Markov model is a model in which:
+A Markov model is a stochastic model for randomly changing systems, with probability associated with a sequence of events occurring based on a previous state
 
 ```math
 P(Xi+1 | X_i X_i-1 ... X_1) = P(X_i+1 | X_i )
