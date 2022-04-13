@@ -70,7 +70,7 @@ In our section on "K-Means application", we discuss the changes we made to the c
 
 # Markov Chains
 
-A Markov model satisfies
+A Markov model satisfies the markov (memory-less) property
 
 ```math
 P(Xi+1 | X_i X_i-1 ... X_1) = P(X_i+1 | X_i )
@@ -81,10 +81,18 @@ An Example Markov Chain
 :-------------------------:
 ![](img/chain.png)  
 
+The states of the chain are A,B and C and the arrows indicate the transition probabilities to go from any given state to any other (including itself). Other types of markov models include:
+
+1. Hidden Markov Models
+2. Markov Decision processes
+3. Partially observed Markov Decision processes
+
+To fully specify the markov chain we require an initilization vector and a transition matrix. The initial state vector is determined by taking the product of the transition matrix, P, with the identity matrix. The probability of fututre events is found by taking the mth power of the transition matric, `P^m`. 
+
 
 # Markov Model Application
 
-For our example, the states we consider are the possible game states an offense experiences during a drive. These states depend on the down, distance to the first down marker and the current field position. There are 4 possible downs. The distance to the first down marker is binned as short (.1-5 yards), medium (6-10 yards) and long (10+ yards). The field position state is also binned as 0-20, 20-40, 40-60 and Redzone, representing the offense having the ball on their own 0-20 yardline, their own 20-40 yardline, ect. Hence possible sates might be 1st and mid 0-20 or 3rd and long 40-60, ect. These states are ended by absorning states (field goal, touch down or change of possession).
+For our example, the states we consider are the possible game states an offense experiences during a drive. These states depend on the down, distance to the first down marker and the current field position. There are 4 possible downs. The distance to the first down marker is binned as short (.1-5 yards), medium (6-10 yards) and long (10+ yards). The field position state is also binned as 0-20, 20-40, 40-60 and Redzone, representing the offense having the ball on their own 0-20 yardline, their own 20-40 yardline, ect. Hence possible sates might be 1st and mid 0-20 or 3rd and long 40-60, ect. These states are ended by absorning states (field goal, touch down or change of possession).For example- the figure below
 
 The transition probabilities `P(x'|x)` (where x' is the next state and x is the current state) tell us how likely it is for us to change between states (including absorbing states) and can be used to measure the impact of individual players. We calculate the transition probabilities using the same method as in the paper by Schulte, 
 ```math2
