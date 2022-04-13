@@ -12,7 +12,7 @@ link to [slides](https://docs.google.com/presentation/d/1bvzMfxo3721_JdMw8n61vsi
 
 link to [clustering notebook](853_clustering.ipynb)
 
-link to [Markov Model](STAT_853_Project_Code.R)
+link to [Markov Model](853_final_prjoect_mc.R)
 
 
 # Table of Contents
