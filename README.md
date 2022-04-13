@@ -17,6 +17,7 @@ ________________________________________________________________________________
 5. [Future Work](#Future-Work)
 6. [References](#References)
 
+link to [slides](https://docs.google.com/presentation/d/1bvzMfxo3721_JdMw8n61vsivoslSwqzKrg_LqV7nLtM/edit?usp=sharing) 
 
 # Introduction
 
