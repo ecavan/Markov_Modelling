@@ -178,6 +178,15 @@ In our future work, we plan to continue to work with Markov Models. In particula
 
 # References
 
+[1] Schulte, Oliver & Khademi, Mahmoud & Gholami, Sajjad & Zhao, Zeyu & Javan Roshtkhari, Mehrsan & Desaulniers, Philippe. (2017). A Markov Game model for valuing actions, locations, and team performance in ice hockey. Data Mining and Knowledge Discovery. 31. 10.1007/s10618-017-0496-z. 
+
+[2] Schulte, O., Zhao, Z., & Javan, M. (2017). Apples-to-Apples : Clustering and Ranking NHL Players Using Location Information and Scoring Impact.
+
+[3] https://github.com/gregalytics/2021-Big-Data-Cup, accessed April 5, 2022.
+
+[4] https://statsbomb.com/articles/soccer/attacking-contributions-markov-models-for-football/ , accessed April 7, 2022.
+
+[5] https://stats.stackexchange.com/questions/133656/how-to-understand-the-drawbacks-of-k-means/133694#133694, accessed April 9, 2022.
 
 
 
