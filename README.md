@@ -148,6 +148,25 @@ What we noticed was that this WR was assigned to cluster 5 (where we has the 2nd
 
 # Results
 
+Following Schulte's paper, we can now shown our "apples-to-apples" comparisons of receivers. For example, we looked at 2 players from different clusters; Alvin Kamara (a RB) and Tyreek Hill (a WR). These two players operate in very different areas of the field. For example, Alvin Kamara and his cluster's heatmap are shown in the figure below:
+
+Alvin Kamara's heatmap        |  Alvin Kamara's cluster heatmap
+:-------------------------:|:-------------------------:
+![](img/kamara1.png)  |  ![](img/kamara2.png)
+
+Compare this with the cluster results for Hill who operates further down the field from Kamara:
+
+Tyreek Hill's heatmap        |  Tyreek Hill's cluster heatmap
+:-------------------------:|:-------------------------:
+![](img/hill1.png)  |  ![](img/hill2.png)
+
+Now when we are comparing the passing value attributed to Kamara and Hill, we can compare them to receivers within their own clusters:
+
+Tyreek Hill's Cluster        |  Alvin Kamara's Cluster 
+:-------------------------:|:-------------------------:
+![](img/hill3.png)  |  ![](img/kamara3.png)
+
+As you can see, Kamara offers little value to the passing game as a running back compared to other receivers in his cluster. Hill is one of the top members of his cluster.
 
 # Future Work
 
