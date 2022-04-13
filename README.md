@@ -20,7 +20,10 @@ ________________________________________________________________________________
 9. [References](#References)
 
 link to [slides](https://docs.google.com/presentation/d/1bvzMfxo3721_JdMw8n61vsivoslSwqzKrg_LqV7nLtM/edit?usp=sharing) 
+
 link to [clustering notebook](853_clustering.ipynb)
+
+link to [Markov Model](projectcode.rmd)
 
 # Introduction
 
