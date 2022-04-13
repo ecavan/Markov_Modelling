@@ -87,25 +87,41 @@ The states of the chain are A,B and C and the arrows indicate the transition pro
 2. Markov Decision processes
 3. Partially observed Markov Decision processes
 
-To fully specify the markov chain we require an initilization vector and a transition matrix. The initial state vector is determined by taking the product of the transition matrix, P, with the identity matrix. The probability of fututre events is found by taking the mth power of the transition matric, `P^m`. 
+To fully specify the markov chain we require an initilization vector and a transition matrix. The transition matrix is a stochastic matrix (rows sum to 1) which contains all the information about the transition probabilities between states. The initial state vector is determined by taking the product of the transition matrix, P, with the identity matrix. The probability of fututre events is found by taking the mth power of the transition matric, `P^m`. 
 
 
 # Markov Model Application
 
-For our example, the states we consider are the possible game states an offense experiences during a drive. These states depend on the down, distance to the first down marker and the current field position. There are 4 possible downs. The distance to the first down marker is binned as short (.1-5 yards), medium (6-10 yards) and long (10+ yards). The field position state is also binned as 0-20, 20-40, 40-60 and Redzone, representing the offense having the ball on their own 0-20 yardline, their own 20-40 yardline, ect. Hence possible sates might be 1st and mid 0-20 or 3rd and long 40-60, ect. These states are ended by absorning states (field goal, touch down or change of possession).For example- the figure below
+For our example, the states we consider are the possible game states an offense experiences during a drive. These states depend on the down, distance to the first down marker and the current field position. There are 4 possible downs. The distance to the first down marker is binned as short (.1-5 yards), medium (6-10 yards) and long (10+ yards). The field position state is also binned as 0-20, 20-40, 40-60 and Redzone, representing the offense having the ball on their own 0-20 yardline, their own 20-40 yardline, ect. Hence possible sates might be 1st and mid 0-20 or 3rd and long 40-60, ect. These states are ended by absorning states (field goal, touch down or change of possession). For example- the figure below shows an example TD drive from the KC Chiefs in the 2018 season. Each set of points represents a different state of the offense as they march down the field for a touchdown.
+
+An Example Football Drive         
+:-------------------------:
+![](img/drive.png)  
 
 The transition probabilities `P(x'|x)` (where x' is the next state and x is the current state) tell us how likely it is for us to change between states (including absorbing states) and can be used to measure the impact of individual players. We calculate the transition probabilities using the same method as in the paper by Schulte, 
 ```math2
 P(x'|x) = n(x',x)/n(x)
 ```
-That is to say, the transition probabilities are approximated as observance counts (`n(x',x)` - how many times we see a particular change in state) divided by the marginal occurance counts (`n(x)` - how many times a particular state has occured). This gives us our maximum likelihood estimates for our markov model. Using the model, we can determine the transition probabilities that are contributed by all of the players we looked at- and estimate their impact by the amount of 'points' they contributed on each play (i.e the amount of value they added increasing the probability an offense will score points, and have a lower probability of 'changing possesions' with the opposing team). The results are summarized in the next chapter.
+That is to say, the transition probabilities are approximated as observance counts (`n(x',x)` - how many times we see a particular change in state) divided by the marginal occurance counts (`n(x)` - how many times a particular state has occured). This gives us our maximum likelihood estimates for our markov model. Once we have our transition matrix, we can calculate the fundamental solution matrix given by:
+```math3
+F = (I-Q)^(-1)
+```
+We use this matrix to calculate:
+1. Expected number of plays remaining in a drive given the current state
+2. Probability of absorption (field goal, touchdown or possession change)
+3. Expected Points Added (EPA) of each play given the previous state
 
+I.e, using the model, we can determine the transition probabilities that are contributed by all of the players we looked at- and estimate their impact by the amount of 'points' they contributed on each play (i.e the amount of value they added increasing the probability an offense will score points, and have a lower probability of 'changing possesions' with the opposing team). However, following the paper by Schulte we didn't want to compare players who operate in very different areas of the field- hence in the next section we will talk about how we clustered the players in order to do "apples-to-apples" comparisons of these players. 
 
 # KMeans Application
 
 We clustered our players using the [tracking data](https://www.kaggle.com/c/nfl-big-data-bowl-2021) from the 2021 NFL Big Data Bowl competition. This is a significant divergence from Schulte's paper, who had only event data (where a shot, pass or turnover is made for example). Our tracking data gives us information about the positions of each player on the field. Using this data, we separate each passing play event (each WR 'target' or attempted pass) into bins which are shown below:
 
-![fig2](img/bins.png)
+
+Passing Target Bins        
+:-------------------------:
+![](img/bins.png)  
+
 
 Using each of these bins we calculate the success probability for the receiver in each zone (if there is no event in a given bin we assign it a success probability of zero); that is to say the success probability is the number of catches a WR (or TE or RB) has in a specific area of the field divided by the number of times a QB has thrown him the ball in that region of the field. The success probability for each region of the field were the covariates we used in our clustering algorithm to seggregate players. Below is an example of the binned success probabilities for KC Chiefs WR Tyreek Hill (A.K.A Cheetah).
 
