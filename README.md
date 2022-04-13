@@ -12,10 +12,11 @@ ________________________________________________________________________________
 # Table of Contents
 1. [Introduction](#Introduction)
 2. [KMeans](#KMeans)
-3. [Markov Model](#Markov-Model)
-4. [Results](#Results)
-5. [Future Work](#Future-Work)
-6. [References](#References)
+3. [KMeans Application](#KMeans-Application)
+4. [Markov Model](#Markov-Model)
+5. [Results](#Results)
+6. [Future Work](#Future-Work)
+7. [References](#References)
 
 link to [slides](https://docs.google.com/presentation/d/1bvzMfxo3721_JdMw8n61vsivoslSwqzKrg_LqV7nLtM/edit?usp=sharing) 
 
@@ -25,7 +26,7 @@ The National Football League (NFL) is a place where some of the freakiest athlet
 
 ![fig1](img/formation.v1.png)
   
-In 2021, the NFL hosted a data science competition called the NFL Big Data Bowl. They tasked competitors with determining the best defenders and wide receivers in the league, and researching what makes these players good at their job. Ryker and I (along with fellow student Brendan Kumagai) already had [some experience](https://operations.nfl.com/updates/football-ops/nfl-announces-finalists-for-fourth-annual-nfl-big-data-bowl/) with the big Data Bowl in 2022, so we decided to look at the 2020 data for our project. The approach for our project largely follows the [paper](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwifzoC6woz3AhXhdc0KHXFmDeEQFnoECAcQAQ&url=https%3A%2F%2Fwww.cs.sfu.ca%2F~oschulte%2Ffiles%2Fpubs%2Fsloan-fix.pdf&usg=AOvVaw0eNIlI-1tbM6Ez4AGPa7yK) of SFU professor Oliver Schulte who presented his work evaluating and clustering NHL (National Hockey League) players at the Sloan Analytics Conference- one of the largest sports analytics conferences held each year. 
+In 2021, the NFL hosted a data science competition called the NFL Big Data Bowl. They tasked competitors with determining the best defenders and wide receivers in the league, and researching what makes these players good at their job. Ryker and I (along with fellow student Brendan Kumagai) already had [some experience](https://operations.nfl.com/updates/football-ops/nfl-announces-finalists-for-fourth-annual-nfl-big-data-bowl/) with the big Data Bowl in 2022, so we decided to look at the 2021 data (containing information from the 2018 NFL season) for our project. The approach for our project largely follows the [paper](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwifzoC6woz3AhXhdc0KHXFmDeEQFnoECAcQAQ&url=https%3A%2F%2Fwww.cs.sfu.ca%2F~oschulte%2Ffiles%2Fpubs%2Fsloan-fix.pdf&usg=AOvVaw0eNIlI-1tbM6Ez4AGPa7yK) of SFU professor Oliver Schulte who presented his work evaluating and clustering NHL (National Hockey League) players at the Sloan Analytics Conference- one of the largest sports analytics conferences held each year. 
 
 His paper is titled, "Apples-to-Apples..." because he wanted to find ways to compare players who do similar actions on the ice (i.e he felt it was wrong to compare defensemen- who's primary task is to defend the net and make outlet passes to forwards, with forwards- who's job is to keep possession of the puck and create scoring oppertunities in the attacking zone). He used the affinity propagation clustering algorithm with the available event data to create heatmaps which described where a player performs specific actions on the ice the most. After doing this, he created a metric to evaluate the players in each of the clusters using a Markov Model. The markov model helps to positively grade players who preform actions that lead to goals for their team (or prevents goals for the other team). Since some of the actions don't end up of the score sheet (a player wins a puck battle leading to a goal for their team or a defensemen chases down an opposing forward preventing a goal), Schulte's algorithm helps to find and give credit to potentially underrated players. 
 
@@ -39,6 +40,33 @@ A[1st and mid] -- QB sack --> B(2nd and long) -- incomplete pass --> C(3rd and l
 For our clustering algorithm we also diverge from Schulte's paper. Whereas Schulte's affinity propagation algorithm doesn't assume an initial cluster number- our KMeans algorithm does need to have a number of clusters specificied a priori. We dealt with this by running the algorithm thousands of times using different pre-specified cluster numbers and picking the iteration where the algorithm has the smallest error.
 
 # KMeans
+
+The classical K-Means algorithm can be ennumerated as:
+
+  1. Choose a value for k
+  2. Initialize k centroids (cluster means) at random 
+  3. assign data to each centroid- recalculate
+  4. iterate until convergence (or desired loss) is reached
+
+
+The classical K-means algorithm is simple and computational efficient, and it scales well with large data sets. We chose this algorithm because of the number of features we used in clustering the data (10). We felt that we might have some trouble using a more advanced clustering algorithm due to the high dimensionality of our problem. Fortunately, we made several changes to the classical algorithm to try to make up for some of it's failings, which I will now go into.
+
+The shortcomings of k-means mostly centers around it's assumption that the variance of each variable is spherically distributed. For example, David Robinson (an empirical bayes researcher) [noted](https://stats.stackexchange.com/questions/133656/how-to-understand-the-drawbacks-of-k-means/133694#133694) that this assumption means that there are clear times when you shouldn't use K-means if you know how your data is distributed. The figure below demonstrates how k-means does a poor job v.s agglomerative clustering when the data is not spherically distributed.
+
+
+K-means            |  Hierarchial Clustering
+:-------------------------:|:-------------------------:
+![](img/kmeans.png)  |  ![](img/hclust.png)
+
+
+K-means also is meant to create clusters of equal sizes- and doesn't really allow us to make unequal cluster sizes. It also has the disadvantage 
+
+
+
+
+
+
+# KMeans Application
 
 We clustered our players using the [tracking data](https://www.kaggle.com/c/nfl-big-data-bowl-2021) from the 2021 NFL Big Data Bowl competition. This is a significant divergence from Schulte's paper, who had only event data (where a shot, pass or turnover is made for example). Our tracking data gives us information about the positions of each player on the field. Using this data, we separate each passing play event (each WR 'target' or attempted pass) into bins which are shown below:
 
