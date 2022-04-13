@@ -146,29 +146,12 @@ Adam Thielan's Affinity to Each Cluster
 
 What we noticed was that this WR was assigned to cluster 5 (where we has the 2nd highest affinity) instead of cluster 8. Hence, by re-assigning the points after the algorithm has converged, we are essentially allowing for un-equal cluster sizes, which is another way in which our algorithm has taken a step further from k-means. Now that we cluster players based on where they catch the ball, we can compare the players within the clusters using the markov model we developped, the results are shown in the next section.
 
-
 # Results
-
-Here we 
-
-
-
-![fig2](img/hill1.png)
-
-We compare this plot with the heatmap for a typical player in Hill's cluster:
-
-![fig4](img/hill2.png)
-
-Cluster 1:
-
-|Player|EPA_new |EPA |
-|----------------|-------------------------------|-----------------------------|
-|Hopkins|2.5|2.1 |
-|Dude |2.4 |2.7 |
-|Dude2  |2.2|2.2|
 
 
 # Future Work
+
+In our future work, we plan to continue to work with Markov Models. In particular, we would like to use importance sampling or sequential monte carlo to sove Hidden Markov processes. In particular, we would like to study the effect of blocking during run plays. Classically, a hidden markov model has been used to model the stochastic nature of financial portfolios. The time-varying price variable is actually a process driven by the underlying volatility of the stocks. Similarly, we believe the realization of the running backs yards per carry are driven by the blocking of his offensive line in front of him. The information we learned during this project will help us when we go to implement this hidden markov model.
 
 # References
 
